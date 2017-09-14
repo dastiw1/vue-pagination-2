@@ -1,0 +1,96 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/dastiw1/vue-pagination-2",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/dastiw1/vue-pagination-2",
+        "spec": "git+https://github.com/dastiw1/vue-pagination-2.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:dastiw1/vue-pagination-2.git",
+          "sshUrl": "git+ssh://git@github.com/dastiw1/vue-pagination-2.git",
+          "httpsUrl": "git+https://github.com/dastiw1/vue-pagination-2.git",
+          "gitUrl": "git://github.com/dastiw1/vue-pagination-2.git",
+          "shortcut": "github:dastiw1/vue-pagination-2",
+          "directUrl": "https://raw.githubusercontent.com/dastiw1/vue-pagination-2/master/package.json"
+        }
+      },
+      "D:\\OpenServer\\domains\\uchet.dev"
+    ]
+  ],
+  "_from": "git+https://github.com/dastiw1/vue-pagination-2.git",
+  "_id": "vue-pagination-2@0.3.2",
+  "_inCache": true,
+  "_location": "/vue-pagination-2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/dastiw1/vue-pagination-2",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/dastiw1/vue-pagination-2",
+    "spec": "git+https://github.com/dastiw1/vue-pagination-2.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:dastiw1/vue-pagination-2.git",
+      "sshUrl": "git+ssh://git@github.com/dastiw1/vue-pagination-2.git",
+      "httpsUrl": "git+https://github.com/dastiw1/vue-pagination-2.git",
+      "gitUrl": "git://github.com/dastiw1/vue-pagination-2.git",
+      "shortcut": "github:dastiw1/vue-pagination-2",
+      "directUrl": "https://raw.githubusercontent.com/dastiw1/vue-pagination-2/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/",
+    "/vue-tables-2"
+  ],
+  "_resolved": "git+https://github.com/dastiw1/vue-pagination-2.git#8edf161b33d3286689f67b9f8dbd89bebada4945",
+  "_shasum": "a347ab6956d25fa8c537469b4335c5dd0e9c41b8",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/dastiw1/vue-pagination-2",
+  "_where": "D:\\OpenServer\\domains\\uchet.dev",
+  "bugs": {
+    "url": "https://github.com/matfish2/vue-pagination-2/issues"
+  },
+  "dependencies": {
+    "vue": ">=2.0.0",
+    "vuex": "^2.0.0"
+  },
+  "description": "Vue.js 2 pagination component",
+  "devDependencies": {
+    "babel-helper-vue-jsx-merge-props": "^2.0.2",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.3.0"
+  },
+  "files": [
+    "compiled",
+    "index.js"
+  ],
+  "gitHead": "8edf161b33d3286689f67b9f8dbd89bebada4945",
+  "homepage": "https://github.com/matfish2/vue-pagination-2#readme",
+  "keywords": [
+    "pagination",
+    "vuejs2",
+    "bootstrap"
+  ],
+  "licenses": "MIT",
+  "main": "index.js",
+  "name": "vue-pagination-2",
+  "optionalDependencies": {},
+  "readme": "# Vue Pagination 2\r\n\r\nNote: This package is for use with Vuejs 2.\r\nFor version 1 please use [v-pagination](https://www.npmjs.com/package/v-pagination) instead.\r\n\r\nSimple, generic and non-intrusive pagination component for Vue.js version 2.\r\nPresentation is based on bootstrap.\r\n\r\n- [Dependencies](#dependencies)\r\n- [Installation](#installation)\r\n- [Usage](#usage)\r\n- [Handle page selection](#handle-page-selection)\r\n  - [Event Bus](#event-bus)\r\n  - [Vuex](#vuex)\r\n\r\n# Dependencies\r\n\r\n* Vue.js (>=2.0.0-rc.1). Required.\r\n* Bootstrap (CSS). Optional.\r\n\r\n# Installation\r\n\r\n    npm install vue-pagination-2\r\n\r\nimport the script:\r\n\r\n    import {Pagination, PaginationEvent} from 'vue-pagination-2';\r\n\r\n# Usage\r\n\r\n## Register the component globally or locally:\r\n\r\n```js\r\nVue.component('pagination', Pagination);\r\n```\r\n\r\nOR\r\n\r\n```js\r\n...\r\ncomponents: {\r\n  Pagination\r\n}\r\n...\r\n```\r\n\r\nHTML:\r\n\r\n    <pagination for=\"some-entity\" :records=\"500\"></pagination>\r\n\r\nprops:\r\n\r\n* `for` `string` `required` unique identifier for the component instance.\r\n* `records` `number` `required` number of records\r\n* `per-page` `number` `optional` records per page. Default: `25`\r\n* `chunk` `number` `optional` max pages per chunk. Default: `10`\r\n* `vuex` `boolean` `optional` Use vuex to manage state\r\n* `count-text` `string` `optional` total records text. It can consist of up to 3 parts, divided by `|`.\r\n  * First part: used when there are multiple pages\r\n  * Second part: used when there is only one page\r\n  * Third part: used when there is only one record.\r\n\r\n  Default: `Showing {from} to {to} of {count} records|{count} records|One record`\r\n\r\n# Handle page selection\r\n\r\n## Event bus\r\n\r\nWhen a page is selected an event will be dispatched, using the unique id for the component.\r\nListen to it on your bus and respond accordingly:\r\n\r\n      PaginationEvent.$on('vue-pagination::some-entity', function(page) {\r\n          // display the relevant records using the page param\r\n      });\r\n\r\n## Vuex (>=2.0.0)\r\n\r\nThe component will register a module on your store using the `for` prop as the name.\r\nThe module will have a `page` property that will contain the current page.\r\nvue-devtools will give you a nice overview of the data structure.\r\n\r\nIf you want to latch on to an existing module on your store, use its name in the `for` prop and manuaully add the following to you store:\r\n\r\n    {\r\n      myModule:{\r\n        state:{\r\n        ```\r\n          page: 1\r\n        ```\r\n      },\r\n      mutations: {\r\n           ```\r\n           ['myModule/PAGINATE'](state, page) {\r\n                  state.page = page\r\n              }\r\n          ```\r\n        }\r\n      }\r\n\r\n# Programmatic Manipulation\r\n\r\nTo programmatically set the page apply a `ref` identifier to the component and use one of the following methods:\r\n\r\n* `setPage(page)`\r\n* `next()`\r\n* `prev()`\r\n* `nextChunk()`\r\n* `prevChunk()`\r\n\r\nAll methods return `true` if the page is legal and was thus set, or `false` otherwise.\r\n\r\n# Computed Properties\r\n\r\n* `totalPages`\r\n* `totalChunks`\r\n* `currentChunk`\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matfish2/vue-pagination-2.git"
+  },
+  "scripts": {
+    "compile": "babel src -d compiled"
+  },
+  "version": "0.3.2"
+}
