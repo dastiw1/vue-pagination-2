@@ -100,7 +100,7 @@ module.exports = {
 
             return this.paginationStart + this.chunk <= this.totalPages ? this.chunk : this.totalPages - this.paginationStart + 1;
         },
-        count: function count() {
+        count: function () {
 
             if (this.countTextType === 'records') {
                 return this.getRecordsCount
@@ -108,7 +108,7 @@ module.exports = {
                 return this.getPagesCount
             }
         },
-        getRecordsCount() {
+        getRecordsCount: function() {
             var from = (this.page - 1) * this.perPage + 1;
             var to = this.page == this.totalPages ? this.records : from + this.perPage - 1;
             var parts = this.countText.split('|');
@@ -116,8 +116,8 @@ module.exports = {
 
             return parts[i].replace('{count}', this.records).replace('{from}', from).replace('{to}', to);
         },
-        getPagesCount() {
-            let count = this.perPage == 0 ? 0 : Math.ceil(this.records / this.perPage);
+        getPagesCount: function()  {
+            var count = this.perPage == 0 ? 0 : Math.ceil(this.records / this.perPage);
             return this.pagesCountText.replace('{count}', count).replace('{page}', this.page);
         }
     },
